@@ -10,14 +10,10 @@ class AppState: ObservableObject {
     @AppStorage("selectedUnits") var selectedUnits: String = "Metric"
     @AppStorage("notificationsEnabled") var notificationsEnabled: Bool = false
 
-    @Published var showSplash: Bool = true
     @Published var colorScheme: ColorScheme? = nil
 
     init() {
         updateColorScheme()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-            withAnimation { self.showSplash = false }
-        }
     }
 
     func updateColorScheme() {

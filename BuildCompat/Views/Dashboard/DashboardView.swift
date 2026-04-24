@@ -155,6 +155,28 @@ struct DashboardView: View {
     }
 }
 
+struct OfflineView: View {
+    var body: some View {
+        GeometryReader { geometry in
+            ZStack {
+                Color.black.ignoresSafeArea()
+                
+                Image("p")
+                    .resizable().scaledToFill()
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+                    .ignoresSafeArea()
+                    .blur(radius: 21)
+                    .opacity(0.5)
+                
+                Image("pp")
+                    .resizable()
+                    .frame(width: 250, height: 220)
+            }
+        }
+        .ignoresSafeArea()
+    }
+}
+
 struct DashboardStatCard: View {
     let value: String
     let label: String
