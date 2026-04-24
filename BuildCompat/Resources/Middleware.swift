@@ -3,7 +3,6 @@ import Foundation
 final class LoggingMiddleware: AbstractMiddleware {
     override func handle(_ action: BuildCompatAction) async {
         let label = describe(action)
-        print("\(CompatParams.signature) Action → \(label)")
         
         await forward(action)
     }
@@ -34,7 +33,7 @@ final class GatekeeperMiddleware: AbstractMiddleware {
         case .startSequence, .consentAccepted, .consentDeclined:
             let allowed = await store.canStillRun()
             guard allowed else {
-                print("\(CompatParams.signature) Gatekeeper blocked: sequence completed")
+                // print("\(CompatParams.signature) Gatekeeper blocked: sequence completed")
                 return
             }
         default:

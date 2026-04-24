@@ -115,7 +115,7 @@ final class BuildCompatViewModel: ObservableObject {
         }
         
         guard !uiLocked else {
-            print("\(CompatParams.signature) UI locked — ignoring signal: \(signal)")
+            // print("\(CompatParams.signature) UI locked — ignoring signal: \(signal)")
             return
         }
         

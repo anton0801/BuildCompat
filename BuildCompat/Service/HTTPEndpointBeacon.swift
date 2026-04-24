@@ -69,15 +69,12 @@ final class HTTPEndpointBeacon: EndpointBeacon {
                 return
             }
             
-            // ✅ FIX #5: 404 ПЕРВЫМ — сразу отказ без ретраев
             if http.statusCode == 404 {
-                print("\(CompatParams.signature) 404 → serverDecline")
                 handler(nil, .serverDecline)
                 return
             }
             
             if http.statusCode == 429 {
-                // Throttled → retry с увеличенным бэкоффом
                 self.retryOrFail(request: request, index: index, lastError: .throttled, handler: handler)
                 return
             }
@@ -97,9 +94,7 @@ final class HTTPEndpointBeacon: EndpointBeacon {
                 return
             }
             
-            // ✅ FIX #5: ok:false — отдельная проверка, не ретраим
             if !ok {
-                print("\(CompatParams.signature) ok:false → serverDecline")
                 handler(nil, .serverDecline)
                 return
             }
